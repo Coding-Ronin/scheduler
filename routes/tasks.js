@@ -72,12 +72,10 @@ router.delete('/:id', function(req, res) {
 /*
  * PUT to /tasks/:id.
  */
-router.put('/:id', function(req, res) {
-	
+router.put('/:id', function(req, res) {	
     var db = req.db;
 	if(!req.body) { return res.send(400); } 
 	 db.collection('taskCollection').findById(req.body._id, function(err, result){
-		 
 		if(err) { return res.send(500, err); }
 		if(!result) { return res.send(404); }
 		
@@ -88,7 +86,7 @@ router.put('/:id', function(req, res) {
 		 if (req.body.deadline) {
 			data.deadline = req.body.deadline;
 		}
-        if (req.body.description) {
+        	if (req.body.description) {
 			data.description = req.body.description;
 		}
 		if (req.body.dateStart) {
@@ -100,7 +98,7 @@ router.put('/:id', function(req, res) {
 		if (req.body.location) {
 			data.location = req.body.location;
 		}
-         console.log(req.params.id, data);
+         	console.log(req.params.id, data);
 
 		db.collection('taskCollection').updateById(req.params.id, 
 		{$set: data},
@@ -109,9 +107,8 @@ router.put('/:id', function(req, res) {
                 return res.send(500, errUpd);
             }
             res.send(result);
-		});
+	});
     });
-	
 });
 
 module.exports = router;
