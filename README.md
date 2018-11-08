@@ -2,6 +2,7 @@ Code-Ronins MEAN Calendar Prototype
 
 Description:
 	This is a prototype for the Code Ronins Calendar Web Service Project.
+	
 	At the base, this branch serves as a Proof Of Concept.
 
 Installation:
