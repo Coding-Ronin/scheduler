@@ -57,31 +57,15 @@ export class HomeComponent {
     event: CalendarEvent;
   };
 
-  actions: CalendarEventAction[] = [
-    {
-      label: '<i class="fa fa-fw fa-pencil"></i>',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent("Edited", event);
-      }
-    },
-    {
-      label: '<i class="fa fa-fw fa-times"></i>',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter(iEvent => iEvent !== event);
-        this.handleEvent("Deleted", event);
-      }
-    }
-  ];
-
   refresh: Subject<any> = new Subject();
 
   events: CalendarEvent[] = [
     {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
+      start: subDays(startOfDay(new Date()), 6),
+      end: addDays(new Date(), 9),
       title: "3 days at Music Concert",
       color: colors.red,
-      actions: this.actions,
+      //actions: this.actions,
       allDay: true,
       resizable: {
         beforeStart: true,
@@ -93,7 +77,7 @@ export class HomeComponent {
       start: startOfDay(new Date()),
       title: "Existential Crisis",
       color: colors.yellow,
-      actions: this.actions
+      //actions: this.actions
     },
     {
       start: subDays(endOfMonth(new Date()), 3),
@@ -107,7 +91,7 @@ export class HomeComponent {
       end: new Date(),
       title: "A draggable and resizable event",
       color: colors.yellow,
-      actions: this.actions,
+      //actions: this.actions,
       resizable: {
         beforeStart: true,
         afterEnd: true
@@ -141,13 +125,13 @@ export class HomeComponent {
   }: CalendarEventTimesChangedEvent): void {
     event.start = newStart;
     event.end = newEnd;
-    this.handleEvent("Dropped or resized", event);
     this.refresh.next();
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
     this.modal.open(this.modalContent, { size: "lg" });
+    this.refresh.next();
   }
 
   addEvent(): void {
