@@ -1,3 +1,8 @@
+# Github Mistakes
+Due to a rush schedule the organization and commits for this github have been warped to display incorrect values.
+The Branch ##master is the true branch that was used for deployment; however, we used this git repo for storing our prototypes as well.
+
+
 # Scheduler with AngularCLI and Angular-Scheduler
 This project is meant to be merged with the foundation branch.
 
